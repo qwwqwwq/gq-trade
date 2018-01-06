@@ -21,12 +21,10 @@ import scala.concurrent.Future
  */
 class ApplicationController @Inject() (
   components: ControllerComponents,
-  silhouette: Silhouette[DefaultEnv]
-)(
+  silhouette: Silhouette[DefaultEnv])(
   implicit
   webJarsUtil: WebJarsUtil,
-  assets: AssetsFinder
-) extends AbstractController(components) with I18nSupport {
+  assets: AssetsFinder) extends AbstractController(components) with I18nSupport {
 
   /**
    * Handles the index action.

@@ -26,8 +26,7 @@ class ApplicationControllerSpec extends PlaySpecification with Mockito {
     "redirect to login page if user is unauthorized" in new Context {
       new WithApplication(application) {
         val Some(redirectResult) = route(app, FakeRequest(routes.ApplicationController.index())
-          .withAuthenticator[DefaultEnv](LoginInfo("invalid", "invalid"))
-        )
+          .withAuthenticator[DefaultEnv](LoginInfo("invalid", "invalid")))
 
         status(redirectResult) must be equalTo SEE_OTHER
 
@@ -45,8 +44,7 @@ class ApplicationControllerSpec extends PlaySpecification with Mockito {
     "return 200 if user is authorized" in new Context {
       new WithApplication(application) {
         val Some(result) = route(app, addCSRFToken(FakeRequest(routes.ApplicationController.index())
-          .withAuthenticator[DefaultEnv](identity.loginInfo))
-        )
+          .withAuthenticator[DefaultEnv](identity.loginInfo)))
 
         status(result) must beEqualTo(OK)
       }
@@ -78,8 +76,7 @@ class ApplicationControllerSpec extends PlaySpecification with Mockito {
       fullName = None,
       email = None,
       avatarURL = None,
-      activated = true
-    )
+      activated = true)
 
     /**
      * A Silhouette fake environment.

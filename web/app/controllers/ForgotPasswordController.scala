@@ -31,13 +31,11 @@ class ForgotPasswordController @Inject() (
   silhouette: Silhouette[DefaultEnv],
   userService: UserService,
   authTokenService: AuthTokenService,
-  mailerClient: MailerClient
-)(
+  mailerClient: MailerClient)(
   implicit
   webJarsUtil: WebJarsUtil,
   assets: AssetsFinder,
-  ex: ExecutionContext
-) extends AbstractController(components) with I18nSupport {
+  ex: ExecutionContext) extends AbstractController(components) with I18nSupport {
 
   /**
    * Views the `Forgot Password` page.
@@ -72,13 +70,11 @@ class ForgotPasswordController @Inject() (
                 from = Messages("email.from"),
                 to = Seq(email),
                 bodyText = Some(views.txt.emails.resetPassword(user, url).body),
-                bodyHtml = Some(views.html.emails.resetPassword(user, url).body)
-              ))
+                bodyHtml = Some(views.html.emails.resetPassword(user, url).body)))
               result
             }
           case None => Future.successful(result)
         }
-      }
-    )
+      })
   }
 }

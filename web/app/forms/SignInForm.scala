@@ -15,9 +15,7 @@ object SignInForm {
     mapping(
       "email" -> email,
       "password" -> nonEmptyText,
-      "rememberMe" -> boolean
-    )(Data.apply)(Data.unapply)
-  )
+      "rememberMe" -> boolean)(Data.apply)(Data.unapply))
 
   /**
    * The form data.

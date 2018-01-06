@@ -13,6 +13,5 @@ object ChangePasswordForm {
    */
   val form = Form(tuple(
     "current-password" -> nonEmptyText,
-    "new-password" -> nonEmptyText
-  ))
+    "new-password" -> nonEmptyText))
 }

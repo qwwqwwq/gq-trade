@@ -33,13 +33,11 @@ class ChangePasswordController @Inject() (
   silhouette: Silhouette[DefaultEnv],
   credentialsProvider: CredentialsProvider,
   authInfoRepository: AuthInfoRepository,
-  passwordHasherRegistry: PasswordHasherRegistry
-)(
+  passwordHasherRegistry: PasswordHasherRegistry)(
   implicit
   webJarsUtil: WebJarsUtil,
   assets: AssetsFinder,
-  ex: ExecutionContext
-) extends AbstractController(components) with I18nSupport {
+  ex: ExecutionContext) extends AbstractController(components) with I18nSupport {
 
   /**
    * Views the `Change Password` page.
@@ -72,7 +70,6 @@ class ChangePasswordController @Inject() (
             case _: ProviderException =>
               Redirect(routes.ChangePasswordController.view()).flashing("error" -> Messages("current.password.invalid"))
           }
-        }
-      )
+        })
   }
 }

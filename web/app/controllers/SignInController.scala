@@ -40,13 +40,11 @@ class SignInController @Inject() (
   credentialsProvider: CredentialsProvider,
   socialProviderRegistry: SocialProviderRegistry,
   configuration: Configuration,
-  clock: Clock
-)(
+  clock: Clock)(
   implicit
   webJarsUtil: WebJarsUtil,
   assets: AssetsFinder,
-  ex: ExecutionContext
-) extends AbstractController(components) with I18nSupport {
+  ex: ExecutionContext) extends AbstractController(components) with I18nSupport {
 
   /**
    * Views the `Sign In` page.
@@ -79,8 +77,7 @@ class SignInController @Inject() (
                   authenticator.copy(
                     expirationDateTime = clock.now + c.as[FiniteDuration]("silhouette.authenticator.rememberMe.authenticatorExpiry"),
                     idleTimeout = c.getAs[FiniteDuration]("silhouette.authenticator.rememberMe.authenticatorIdleTimeout"),
-                    cookieMaxAge = c.getAs[FiniteDuration]("silhouette.authenticator.rememberMe.cookieMaxAge")
-                  )
+                    cookieMaxAge = c.getAs[FiniteDuration]("silhouette.authenticator.rememberMe.cookieMaxAge"))
                 case authenticator => authenticator
               }.flatMap { authenticator =>
                 silhouette.env.eventBus.publish(LoginEvent(user, request))
@@ -94,7 +91,6 @@ class SignInController @Inject() (
           case _: ProviderException =>
             Redirect(routes.SignInController.view()).flashing("error" -> Messages("invalid.credentials"))
         }
-      }
-    )
+      })
   }
 }

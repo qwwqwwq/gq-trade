@@ -29,11 +29,9 @@ class ActivateAccountController @Inject() (
   silhouette: Silhouette[DefaultEnv],
   userService: UserService,
   authTokenService: AuthTokenService,
-  mailerClient: MailerClient
-)(
+  mailerClient: MailerClient)(
   implicit
-  ex: ExecutionContext
-) extends AbstractController(components) with I18nSupport {
+  ex: ExecutionContext) extends AbstractController(components) with I18nSupport {
 
   /**
    * Sends an account activation email to the user with the given email.
@@ -56,8 +54,7 @@ class ActivateAccountController @Inject() (
             from = Messages("email.from"),
             to = Seq(decodedEmail),
             bodyText = Some(views.txt.emails.activateAccount(user, url).body),
-            bodyHtml = Some(views.html.emails.activateAccount(user, url).body)
-          ))
+            bodyHtml = Some(views.html.emails.activateAccount(user, url).body)))
           result
         }
       case None => Future.successful(result)

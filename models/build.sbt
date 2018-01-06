@@ -1,9 +1,5 @@
 name := """models"""
 
-version := "1.0"
-
-scalaVersion := "2.12.3"
-
 mainClass in Compile := Some("SimpleExample")
 
 libraryDependencies ++= List(

@@ -35,13 +35,11 @@ class ResetPasswordController @Inject() (
   userService: UserService,
   authInfoRepository: AuthInfoRepository,
   passwordHasherRegistry: PasswordHasherRegistry,
-  authTokenService: AuthTokenService
-)(
+  authTokenService: AuthTokenService)(
   implicit
   webJarsUtil: WebJarsUtil,
   assets: AssetsFinder,
-  ex: ExecutionContext
-) extends AbstractController(components) with I18nSupport {
+  ex: ExecutionContext) extends AbstractController(components) with I18nSupport {
 
   /**
    * Views the `Reset Password` page.
@@ -74,8 +72,7 @@ class ResetPasswordController @Inject() (
                 Redirect(routes.SignInController.view()).flashing("success" -> Messages("password.reset"))
               }
             case _ => Future.successful(Redirect(routes.SignInController.view()).flashing("error" -> Messages("invalid.reset.link")))
-          }
-        )
+          })
       case None => Future.successful(Redirect(routes.SignInController.view()).flashing("error" -> Messages("invalid.reset.link")))
     }
   }

@@ -42,13 +42,11 @@ class SignUpController @Inject() (
   authTokenService: AuthTokenService,
   avatarService: AvatarService,
   passwordHasherRegistry: PasswordHasherRegistry,
-  mailerClient: MailerClient
-)(
+  mailerClient: MailerClient)(
   implicit
   webJarsUtil: WebJarsUtil,
   assets: AssetsFinder,
-  ex: ExecutionContext
-) extends AbstractController(components) with I18nSupport {
+  ex: ExecutionContext) extends AbstractController(components) with I18nSupport {
 
   /**
    * Views the `Sign Up` page.
@@ -78,8 +76,7 @@ class SignUpController @Inject() (
               from = Messages("email.from"),
               to = Seq(data.email),
               bodyText = Some(views.txt.emails.alreadySignedUp(user, url).body),
-              bodyHtml = Some(views.html.emails.alreadySignedUp(user, url).body)
-            ))
+              bodyHtml = Some(views.html.emails.alreadySignedUp(user, url).body)))
 
             Future.successful(result)
           case None =>
@@ -92,8 +89,7 @@ class SignUpController @Inject() (
               fullName = Some(data.firstName + " " + data.lastName),
               email = Some(data.email),
               avatarURL = None,
-              activated = false
-            )
+              activated = false)
             for {
               avatar <- avatarService.retrieveURL(data.email)
               user <- userService.save(user.copy(avatarURL = avatar))
@@ -106,14 +102,12 @@ class SignUpController @Inject() (
                 from = Messages("email.from"),
                 to = Seq(data.email),
                 bodyText = Some(views.txt.emails.signUp(user, url).body),
-                bodyHtml = Some(views.html.emails.signUp(user, url).body)
-              ))
+                bodyHtml = Some(views.html.emails.signUp(user, url).body)))
 
               silhouette.env.eventBus.publish(SignUpEvent(user, request))
               result
             }
         }
-      }
-    )
+      })
   }
 }

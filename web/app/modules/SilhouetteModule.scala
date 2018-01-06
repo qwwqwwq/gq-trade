@@ -90,8 +90,7 @@ class SilhouetteModule extends AbstractModule with ScalaModule {
       userService,
       authenticatorService,
       Seq(),
-      eventBus
-    )
+      eventBus)
   }
 
   /**
@@ -120,8 +119,7 @@ class SilhouetteModule extends AbstractModule with ScalaModule {
       twitterProvider,
       vkProvider,
       xingProvider,
-      yahooProvider
-    ))
+      yahooProvider))
   }
 
   /**
