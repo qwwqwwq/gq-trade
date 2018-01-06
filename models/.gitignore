@@ -1,0 +1,11 @@
+/.idea/
+/.idea_modules/
+target
+/project/typesafe.properties
+/project/activator-*
+/project/typesafe.properties
+/logs/
+/RUNNING_PID
+*.iml
+.DS_Store
+.sbtserver*
