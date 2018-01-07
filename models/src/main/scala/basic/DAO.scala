@@ -1,9 +1,10 @@
 import scala.language.higherKinds
 import slick.driver.JdbcProfile
 
-/** All database code goes into the DAO (data access object) class which
-  * is parameterized by a Slick driver that implements JdbcProfile.
-  */
+/**
+ * All database code goes into the DAO (data access object) class which
+ * is parameterized by a Slick driver that implements JdbcProfile.
+ */
 class DAO(val driver: JdbcProfile) {
   // Import the Scala API from the driver
   import driver.api._
@@ -25,7 +26,7 @@ class DAO(val driver: JdbcProfile) {
 
   /** Get the value for the given key */
   def get(k: String): DBIO[Option[String]] =
-    (for(p <- props if p.key === k) yield p.value).result.headOption
+    (for (p <- props if p.key === k) yield p.value).result.headOption
 
   /** Get the first element for a Query from this DAO */
   def getFirst[M, U, C[_]](q: Query[M, U, C]): DBIO[U] =

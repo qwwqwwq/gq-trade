@@ -19,9 +19,8 @@ trait UserComponent { this: DriverComponent with PictureComponent =>
     users.map(u => (u.name, u.pictureId)) returning users.map(_.id)
 
   def insert(user: User): DBIO[User] = for {
-    pic <-
-      if(user.picture.id.isEmpty) insert(user.picture)
-      else DBIO.successful(user.picture)
+    pic <- if (user.picture.id.isEmpty) insert(user.picture)
+    else DBIO.successful(user.picture)
     id <- usersAutoInc += (user.name, pic.id.get)
   } yield user.copy(picture = pic, id = id)
 }

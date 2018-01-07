@@ -6,7 +6,6 @@ name := "web"
 resolvers += Resolver.jcenterRepo
 
 resolvers += "Sonatype snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/"
-
 libraryDependencies ++= Seq(
   "com.mohiva" %% "play-silhouette" % "5.0.0",
   "com.mohiva" %% "play-silhouette-password-bcrypt" % "5.0.0",
@@ -27,8 +26,6 @@ libraryDependencies ++= Seq(
   guice,
   filters
 )
-
-lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
 routesGenerator := InjectedRoutesGenerator
 

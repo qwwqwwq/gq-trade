@@ -1,5 +1,5 @@
 import scala.concurrent.duration.Duration
-import scala.concurrent.{Await, Future}
+import scala.concurrent.{ Await, Future }
 import scala.concurrent.ExecutionContext.Implicits.global
 
 import slick.backend.DatabaseConfig
@@ -29,8 +29,7 @@ object SimpleExample extends App {
       props.schema.create,
       props += ("foo", "bar"),
       get("foo").map(r => println("- Value for key 'foo': " + r)),
-      get("baz").map(r => println("- Value for key 'baz': " + r))
-    ).withPinnedSession)
+      get("baz").map(r => println("- Value for key 'baz': " + r))).withPinnedSession)
     val f2 = f andThen { case _ => db.close }
     Await.result(f2, Duration.Inf)
   } finally Util.unloadDrivers

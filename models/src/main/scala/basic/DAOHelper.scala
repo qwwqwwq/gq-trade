@@ -1,8 +1,9 @@
 import scala.language.higherKinds
 
-/** Common functionality that needs to work with types from the DAO
-  * but in a DAO-independent way.
-  */
+/**
+ * Common functionality that needs to work with types from the DAO
+ * but in a DAO-independent way.
+ */
 class DAOHelper(val dao: DAO) {
   import dao.driver.api._
 

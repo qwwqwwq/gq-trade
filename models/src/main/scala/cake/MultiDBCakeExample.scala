@@ -1,8 +1,8 @@
 import scala.concurrent.duration.Duration
-import scala.concurrent.{Await, Future}
+import scala.concurrent.{ Await, Future }
 import scala.concurrent.ExecutionContext.Implicits.global
 
-import slick.driver.{H2Driver, SQLiteDriver}
+import slick.driver.{ H2Driver, SQLiteDriver }
 import slick.jdbc.JdbcBackend.Database
 
 /** Run Slick code with multiple drivers using the Cake pattern. */

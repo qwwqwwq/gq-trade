@@ -25,10 +25,10 @@ class Greeter(message: String, printerActor: ActorRef) extends Actor {
   def receive = {
     case WhoToGreet(who) =>
       greeting = s"$message, $who"
-    case Greet           =>
+    case Greet =>
       //#greeter-send-message
       printerActor ! Greeting(greeting)
-      //#greeter-send-message
+    //#greeter-send-message
   }
 }
 //#greeter-actor

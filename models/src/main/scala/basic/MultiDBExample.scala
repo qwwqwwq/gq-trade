@@ -1,9 +1,9 @@
 import scala.concurrent.duration.Duration
-import scala.concurrent.{Await, Future}
+import scala.concurrent.{ Await, Future }
 import scala.concurrent.ExecutionContext.Implicits.global
 
 import slick.dbio.DBIO
-import slick.driver.{H2Driver, SQLiteDriver}
+import slick.driver.{ H2Driver, SQLiteDriver }
 import slick.jdbc.JdbcBackend.Database
 
 /** Run SLICK code with multiple drivers. */
@@ -17,8 +17,7 @@ object MultiDBExample extends App {
       dao.insert("foo", "bar"),
       dao.get("foo").map(r => println("- Value for key 'foo': " + r)),
       dao.get("baz").map(r => println("- Value for key 'baz': " + r)),
-      h.dao.getFirst(h.restrictKey("foo", dao.props)).map(r => println("- Using the helper: " + r))
-    ).withPinnedSession)
+      h.dao.getFirst(h.restrictKey("foo", dao.props)).map(r => println("- Using the helper: " + r))).withPinnedSession)
   }
 
   try {

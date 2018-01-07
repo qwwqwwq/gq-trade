@@ -5,9 +5,10 @@ import java.sql.Date
 
 import slick.driver.H2Driver.api._
 
-/** This example shows how to lift a native database function
-  * to Slick's query language.
-  */
+/**
+ * This example shows how to lift a native database function
+ * to Slick's query language.
+ */
 object CallNativeDBFunction extends App {
 
   class SalesPerDay(tag: Tag) extends Table[(Date, Int)](tag, "SALES_PER_DAY") {
@@ -44,13 +45,11 @@ object CallNativeDBFunction extends App {
       (Date.valueOf("2011-04-08"), 5),
       (Date.valueOf("2011-04-09"), 4),
       (Date.valueOf("2011-04-10"), 0),
-      (Date.valueOf("2011-04-11"), 2)
-    ),
+      (Date.valueOf("2011-04-11"), 2)),
     q1.result.map { r =>
       println("Day of week (1 = Sunday) -> Sales:")
       r.foreach { case (dow, sum) => println("  " + dow + "\t->\t" + sum) }
-    }
-  ))
+    }))
 
   Await.result(f, Duration.Inf)
   db.close()
