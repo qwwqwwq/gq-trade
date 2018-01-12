@@ -12,18 +12,20 @@ object Order {
   }
 }
 
-case class BuyOrder(buyingCoin: Coin,
-                    buyAmount: Double,
-                    sellingCoin: Coin,
-                    sellAmount: Double,
-                    active: Boolean) extends Order {
+case class BuyOrder(
+  buyingCoin: Coin,
+  buyAmount: Double,
+  sellingCoin: Coin,
+  sellAmount: Double,
+  active: Boolean) extends Order {
   override def getOrderType: Order.Type.Value = Order.Type.BUY
 }
 
-case class SellOrder(buyingCoin: Coin,
-                     buyAmount: Double,
-                     sellingCoin: Coin,
-                     sellAmount: Double,
-                     active: Boolean) extends Order {
+case class SellOrder(
+  buyingCoin: Coin,
+  buyAmount: Double,
+  sellingCoin: Coin,
+  sellAmount: Double,
+  active: Boolean) extends Order {
   override def getOrderType: Order.Type.Value = Order.Type.SELL
 }

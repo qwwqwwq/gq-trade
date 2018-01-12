@@ -4,7 +4,9 @@ import java.util.UUID
 
 import models.Exchange
 
+import scala.concurrent.Future
+
 trait ExchangeDAO {
 
-  def getExchanges(userId: UUID): Set[Exchange]
+  def getExchanges(userId: UUID): Future[Seq[Exchange]]
 }

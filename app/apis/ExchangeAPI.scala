@@ -6,6 +6,8 @@ import scala.concurrent.duration.FiniteDuration
 
 trait ExchangeAPI {
 
+  def getExchange: Exchange
+
   def getActiveOrders: Set[Order]
 
   def createOrder: Order

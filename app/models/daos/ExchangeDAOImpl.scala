@@ -1,16 +1,13 @@
 package models.daos
 
 import java.util.UUID
-import javax.inject.Inject
+import javax.inject.{ Inject, Singleton }
 
 import models.Exchange
-import slick.jdbc.MySQLProfile.api._
-import slick.lifted.Tag
 import play.api.db.slick.DatabaseConfigProvider
 import slick.jdbc.JdbcProfile
 
-import scala.concurrent.{ExecutionContext, Future}
-
+import scala.concurrent.{ ExecutionContext, Future }
 
 @Singleton
 class ExchangeDAOImpl @Inject() (dbConfigProvider: DatabaseConfigProvider)(implicit ec: ExecutionContext) extends ExchangeDAO {
@@ -18,7 +15,7 @@ class ExchangeDAOImpl @Inject() (dbConfigProvider: DatabaseConfigProvider)(impli
   import dbConfig._
   import profile.api._
 
-  class Exchanges(tag: Tag) extends Table[Exchange](tag, "EXCHANGES") {
+  private class Exchanges(tag: Tag) extends Table[Exchange](tag, "EXCHANGES") {
     def id = column[Int]("ID", O.PrimaryKey, O.AutoInc)
 
     def exchangeName = column[String]("NAME")
@@ -32,7 +29,9 @@ class ExchangeDAOImpl @Inject() (dbConfigProvider: DatabaseConfigProvider)(impli
     override def * = (id.?, name, apiKey) <> (Exchange.tupled, Exchange.unapply)
   }
 
+  private val exchanges = TableQuery[Exchanges]
+
   override def getExchanges(userId: UUID): Future[Seq[Exchange]] = {
-    db.run(TableQuery[Exchanges].filter(_.userId === userId.toString).result)
+    db.run(exchanges.filter(_.userId === userId.toString).result)
   }
 }
