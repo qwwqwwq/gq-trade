@@ -31,6 +31,7 @@ libraryDependencies ++= Seq(
   "com.typesafe.play" %% "play-slick" % "3.0.1",
   "com.typesafe.play" %% "play-slick-evolutions" % "3.0.1",
   "org.log4s" %% "log4s" % "1.3.6",
+  "com.digitaltangible" %% "play-guard" % "2.1.0",
   "com.typesafe.akka" %% "akka-testkit" % "2.5.8" % Test,
   specs2 % Test,
   ehcache,
