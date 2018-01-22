@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+import "scalapb/scalapb.proto";
+
+option (scalapb.options) = {
+  package_name: "models"
+  flat_package: true
+};
+
+message Test {
+    string test = 1;
+}

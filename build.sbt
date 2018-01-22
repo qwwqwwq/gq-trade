@@ -1,6 +1,3 @@
-import play.sbt._
-import scalariform.formatter.preferences._
-
 name := "gqtrade"
 
 organization := "com.gqtrade"
@@ -33,6 +30,9 @@ libraryDependencies ++= Seq(
   "org.log4s" %% "log4s" % "1.3.6",
   "com.digitaltangible" %% "play-guard" % "2.1.0",
   "com.typesafe.akka" %% "akka-testkit" % "2.5.8" % Test,
+  "com.trueaccord.scalapb" %% "compilerplugin" % "0.6.7",
+  "com.trueaccord.scalapb" %% "scalapb-json4s" % "0.3.2",
+  "com.trueaccord.scalapb" %% "scalapb-runtime" % com.trueaccord.scalapb.compiler.Version.scalapbVersion % "protobuf",
   specs2 % Test,
   ehcache,
   guice,
@@ -40,7 +40,16 @@ libraryDependencies ++= Seq(
 )
 
 lazy val root = (project in file("."))
-    .enablePlugins(PlayScala)
+  .enablePlugins(PlayScala)
+  .settings(
+    watchSources ++= (baseDirectory.value / "public/ui" ** "*").get
+  )
+
+PB.targets in Compile := Seq(
+  scalapb.gen() -> (sourceManaged in Compile).value
+)
+
+PB.protoSources in Compile := Seq(baseDirectory.value / "protobuf")
 
 routesGenerator := InjectedRoutesGenerator
 
