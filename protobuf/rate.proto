@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+import "scalapb/scalapb.proto";
+import "coin.proto";
+
+option (scalapb.options) = {
+  package_name: "models"
+  flat_package: true
+};
+
+message Rate {
+    string forCoin = 1;
+    string withCoin = 2;
+    double amount = 3;
+}

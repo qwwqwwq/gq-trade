@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import "scalapb/scalapb.proto";
+import "coin.proto";
+import "exchange.proto";
+
+option (scalapb.options) = {
+  package_name: "models"
+  flat_package: true
+};
+
+message Order {
+    string externalId = 1;
+    string userId = 2;
+    string exchangeId = 3;
+    string forCoin = 4;
+    double forAmount = 5;
+    string withCoin = 6;
+    double withAmount = 7;
+    double fulfilledAmount = 8;
+    bool active = 9;
+}

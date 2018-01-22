@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+import "scalapb/scalapb.proto";
+
+option (scalapb.options) = {
+  package_name: "models"
+  flat_package: true
+};
+
+message Balance {
+    string id = 1;
+    string userId = 2;
+    string coinId = 3;
+    double amount = 4;
+}
