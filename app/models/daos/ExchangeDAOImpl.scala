@@ -26,7 +26,7 @@ class ExchangeDAOImpl @Inject() (dbConfigProvider: DatabaseConfigProvider)(impli
 
     def apiKey = column[String]("API_KEY")
 
-    override def * = (id.?, name, apiKey) <> (Exchange.tupled, Exchange.unapply)
+    override def * = (id.?, name, apiKey) <> ((Exchange.apply _).tupled, Exchange.unapply)
   }
 
   private val exchanges = TableQuery[Exchanges]

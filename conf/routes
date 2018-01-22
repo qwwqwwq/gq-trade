@@ -5,6 +5,8 @@
 
 GET         /                                controllers.Assets.at(path="/public", file="index.html")
 
+GET         /home                            controllers.ApplicationController.index
+
 GET         /signOut                         controllers.ApplicationController.signOut
 GET         /authenticate/:provider          controllers.SocialAuthController.authenticate(provider)
 
