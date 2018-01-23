@@ -29,7 +29,7 @@ class ExchangeDAOImpl @Inject() (dbConfigProvider: DatabaseConfigProvider)(impli
 
   private val exchanges = TableQuery[Exchanges]
 
-  override def getExchanges(userId: UUID): Future[Seq[Exchange]] = {
-    db.run(exchanges.filter(_.userId === userId.toString).result)
+  override def getExchanges(userId: Int): Future[Seq[Exchange]] = {
+    db.run(exchanges.filter(_.userId === userId).result)
   }
 }

@@ -8,5 +8,5 @@ import scala.concurrent.Future
 
 trait ExchangeDAO {
 
-  def getExchanges(userId: UUID): Future[Seq[Exchange]]
+  def getExchanges(userId: Int): Future[Seq[Exchange]]
 }

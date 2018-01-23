@@ -4,7 +4,6 @@ import {ExchangesResolve} from "./services/api.service";
 
 
 export const APP_ROUTES: Routes = [
-
   {
     path: 'exchanges',
     component: ExchangesComponent,

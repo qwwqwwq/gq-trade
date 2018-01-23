@@ -61,7 +61,7 @@ class UserTrader @Inject() (
   }
 
   override def preStart(): Unit = {
-    pipe(exchangeDAO.getExchanges(user.userID).map({
+    pipe(exchangeDAO.getExchanges(1).map({ //TODO
       result => Init(result)
     })) to self
   }
