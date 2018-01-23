@@ -26,4 +26,6 @@ POST        /password/change                 controllers.ChangePasswordControlle
 GET         /account/email/:email            controllers.ActivateAccountController.send(email: String)
 GET         /account/activate/:token         controllers.ActivateAccountController.activate(token: java.util.UUID)
 
+GET         /api/exchanges                   controllers.ExchangeController.view
+
 GET         /*file                           controllers.Assets.at(path="/public", file)

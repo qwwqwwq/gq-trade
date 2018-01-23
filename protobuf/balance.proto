@@ -8,7 +8,7 @@ option (scalapb.options) = {
 };
 
 message Balance {
-    string id = 1;
+    int32 id = 1;
     string userId = 2;
     string coinId = 3;
     double amount = 4;

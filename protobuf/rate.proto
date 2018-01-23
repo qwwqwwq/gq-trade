@@ -9,7 +9,9 @@ option (scalapb.options) = {
 };
 
 message Rate {
-    string forCoin = 1;
-    string withCoin = 2;
-    double amount = 3;
+    int32 id = 1;
+    string forCoin = 2;
+    string withCoin = 3;
+    string exchangeId = 4;
+    double amount = 5;
 }

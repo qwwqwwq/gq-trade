@@ -16,17 +16,15 @@ class ExchangeDAOImpl @Inject() (dbConfigProvider: DatabaseConfigProvider)(impli
   import profile.api._
 
   private class Exchanges(tag: Tag) extends Table[Exchange](tag, "EXCHANGES") {
-    def id = column[Int]("ID", O.PrimaryKey, O.AutoInc)
+    def id = column[Int]("ID", O.PrimaryKey, O.Unique, O.AutoInc)
 
-    def exchangeName = column[String]("NAME")
-
-    def userId = column[String]("USER_ID", O.Unique)
+    def userId = column[Int]("USER_ID")
 
     def name = column[String]("NAME")
 
     def apiKey = column[String]("API_KEY")
 
-    override def * = (id.?, name, apiKey) <> (Exchange., Exchange.unapply)
+    override def * = (id, userId, name, apiKey) <> ((Exchange.apply _).tupled, Exchange.unapply)
   }
 
   private val exchanges = TableQuery[Exchanges]

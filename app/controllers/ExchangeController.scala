@@ -8,6 +8,7 @@ import play.api.i18n.I18nSupport
 import play.api.libs.json.Json
 import play.api.mvc.{ AbstractController, ControllerComponents }
 import utils.auth.DefaultEnv
+import com.trueaccord.scalapb.json.JsonFormat
 
 import scala.concurrent.ExecutionContext
 
@@ -19,7 +20,7 @@ class ExchangeController @Inject() (
 
   def view = silhouette.SecuredAction.async {
     implicit request =>
-      exchangeDAO.getExchanges(request.identity.userID).map(exchanges =>
-        Ok(Json.toJson(exchanges)))
+      exchangeDAO.getExchanges(request.identity.userID).map(
+        exchanges => Ok(JsonFormat.toJson(exchanges)))
   }
 }

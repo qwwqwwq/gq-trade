@@ -8,7 +8,8 @@ option (scalapb.options) = {
 };
 
 message Exchange {
-    string id = 1;
-    string name = 2;
-    string apiKey = 3;
+    int32 id = 1;
+    int32 userId = 2;
+    string name = 3;
+    string apiKey = 4;
 }

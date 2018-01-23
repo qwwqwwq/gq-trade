@@ -10,13 +10,14 @@ option (scalapb.options) = {
 };
 
 message Order {
-    string externalId = 1;
-    string userId = 2;
-    string exchangeId = 3;
-    string forCoin = 4;
-    double forAmount = 5;
-    string withCoin = 6;
-    double withAmount = 7;
-    double fulfilledAmount = 8;
-    bool active = 9;
+    int32 id = 1;
+    string externalId = 2;
+    int32 userId = 3;
+    int32 exchangeId = 4;
+    string forCoin = 5;
+    double forAmount = 6;
+    string withCoin = 7;
+    double withAmount = 8;
+    double fulfilledAmount = 9;
+    bool active = 10;
 }
