@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable, InjectionToken} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from 'rxjs/Observable';
 import {Exchange} from "../models"
@@ -20,10 +20,12 @@ export class ApiServiceImpl implements ApiService {
   }
 }
 
+export const API_SERVICE = new InjectionToken<ApiService>('api_service');
+
 @Injectable()
 export class ExchangesResolve implements Resolve<Exchange[]> {
 
-  constructor(private apiService: ApiService) {
+  constructor(@Inject(API_SERVICE) private apiService: ApiService) {
   }
 
   resolve(route: ActivatedRouteSnapshot): Observable<Exchange[]> {

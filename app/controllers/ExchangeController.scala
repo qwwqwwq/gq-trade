@@ -21,7 +21,7 @@ class ExchangeController @Inject() (
 
   def view = silhouette.SecuredAction.async {
     implicit request =>
-      exchangeDAO.getExchanges(1).map( // TODO
+      exchangeDAO.getExchanges(1).map(
         exchanges => Ok(Json.toJson(exchanges)))
   }
 }
